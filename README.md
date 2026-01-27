@@ -2,6 +2,14 @@
 
 [Read this file in english here.](README.en.md)
 
+## Instalación
+
+```bash
+cd code
+pnpm install
+pnpm dev
+```
+
 ## Descripción
 
 En esta prueba tendrás que implementar un diseño de Figma, el programa
@@ -19,7 +27,7 @@ de llamadas. Tendrás una hora para realizarlo.
 > capaz de terminar. Queremos evaluar tu capacidad de priorizar y valorar
 > la importancia de las tareas.
 
-## ¿En que consiste la tarea?
+## ¿En qué consiste la tarea?
 
 Deberás implementar este [diseño de Figma](https://figma.com), usando React
 con TS y Tailwind CSS.
@@ -32,10 +40,10 @@ Este es el stack con el que trabajarás en la compañía, sin embargo, también
 puedes realizar la prueba completamente de cero siempre que uses React 19,
 Typescript y Tailwind CSS.
 
-> [!WARNING] 
+> [!WARNING]
 > Nuestra API no devuelve localhost en los headers de CORS. En el código dado
-> con Vite, hay un proxy preconfigurado para poder utilizarla API directamente
-> ([saber más](<README#Recursos útiles>)). Si utilizas tu propio servidor de
+> con Vite, hay un proxy preconfigurado para poder utilizar la API directamente
+> ([saber más](#proxy-de-desarrollo)). Si utilizas tu propio servidor de
 > desarrollo tendrás que configurar tu propio proxy.
 
 ### Tareas a realizar
@@ -179,8 +187,33 @@ Obtiene los detalles de facturación y suscripción del proyecto actual.
 > 👉 Para más información consulta la [API reference de Billing](https://docs.diga.io/api-reference/billing--subscriptions/get-subscription).
 
 ---
+
+### Proxy de desarrollo
+
 > [!WARNING]
-> Como se ha discutido anteriormente, esta API 
+> Nuestra API no devuelve `localhost` en los headers de CORS. Si utilizas el
+> código base proporcionado con Vite, hay un proxy preconfigurado que puedes
+> usar. Si utilizas tu propio servidor de desarrollo tendrás que configurar
+> tu propio proxy.
+
+El proxy está configurado en `code/vite.config.ts` y redirige todas las peticiones
+que empiecen por `/api` hacia `https://api.diga.io`, eliminando el prefijo `/api`
+de la ruta.
+
+**Ejemplo de uso:**
+
+```typescript
+// En tu código, en lugar de llamar directamente a la API:
+fetch("https://api.diga.io/v1/billing/subscription", { ... })
+
+// Usa el proxy con el prefijo /api:
+fetch("/api/v1/billing/subscription", { ... })
+```
+
+El proxy se encargará de:
+- Redirigir la petición a `https://api.diga.io/v1/billing/subscription`
+- Añadir los headers de CORS necesarios
+- Mantener la conexión segura (HTTPS)
 
 ---
 
@@ -201,6 +234,11 @@ El selector debe ofrecer las siguientes API keys:
 - sk-944645d244ddfa2890b77f2c1262e595d1aa6ad89a8d3775cb29c036dba9d55d
 - sk-f0d89d3b2924ea11f47db647e9090bec96e4c13db9b9094d9032c31910842a61
 - sk-7ae237700e65605e400e32e42811130acf34a7aefbc8eb42c10107faba758e91
+
+> [!TIP]
+> Muestra los primeros 10 caracteres de cada API key en el selector
+> (ej: `sk-944645d2`). La API key seleccionada debe guardarse en memoria
+> (Context o estado), no es necesario persistirla en localStorage.
 
 Estas son API keys de proyectos reales en Diga. Tienen llamadas y suscripciones
 simuladas con las que podrás trabajar en la prueba.

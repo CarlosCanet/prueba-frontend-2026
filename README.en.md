@@ -2,6 +2,14 @@
 
 [Leer este archivo en español aquí.](README.md)
 
+## Installation
+
+```bash
+cd code
+pnpm install
+pnpm dev
+```
+
 ## Description
 
 In this test, you will implement a design from Figma, the software you will be using alongside the design team at Diga.
@@ -21,6 +29,12 @@ You can start from this repository, which includes a default Vite installation p
 
 This is the stack you will work with at the company; however, you can perform the test completely from scratch as long as you use **React 19**, **TypeScript** and **Tailwind CSS**.
 
+> [!WARNING]
+> Our API does not return localhost in the CORS headers. In the provided Vite
+> code, there is a pre-configured proxy to use the API directly
+> ([learn more](#development-proxy)). If you use your own development server,
+> you will need to configure your own proxy.
+
 ### Tasks to perform
 
 These are the features you must implement. This list is simply a description of what you will find in the design.
@@ -28,7 +42,7 @@ These are the features you must implement. This list is simply a description of 
 These tasks are not in any specific order; organize them as you prefer.
 
 - **Create a sidebar with two pages.**
-    - The first one will be called "Subscription". You can find this component in `componente.tsx`. That code works but has issues. **Refactor it** as you would in a real PR.
+    - The first one will be called "Subscription". You can find this component in [this file](./code/src/pages/subscription.tsx). That code works but has issues. **Refactor it** as you would in a real PR.
     - The second one will be "List", showing the list of received calls.
 
 - **Project Selector:** inside the sidebar, create a "Project Selector" that allows the user to change the API key used in requests. When the user switches projects, the page content must **reload automatically**.
@@ -92,7 +106,7 @@ Retrieves the project's call history.
       },
       "phone_register_id": "3c90c3cc-0d44-4b50-8888-8dd25736052a",
       "created_date": "2023-11-07T05:31:56Z",
-      "recording_url": "[https://api.diga.io/recordings/sample.mp3](https://api.diga.io/recordings/sample.mp3)",
+      "recording_url": "https://api.diga.io/recordings/sample.mp3",
       "start_time": "2023-11-07T05:31:56Z",
       "end_time": "2023-11-07T05:33:59Z",
       "duration": 123,
@@ -154,6 +168,35 @@ Retrieves the billing and subscription details of the current project.
 
 ---
 
+### Development Proxy
+
+> [!WARNING]
+> Our API does not return `localhost` in the CORS headers. If you use the
+> provided Vite base code, there is a pre-configured proxy you can use.
+> If you use your own development server, you will need to configure your
+> own proxy.
+
+The proxy is configured in `code/vite.config.ts` and redirects all requests
+starting with `/api` to `https://api.diga.io`, removing the `/api` prefix
+from the path.
+
+**Usage example:**
+
+```typescript
+// In your code, instead of calling the API directly:
+fetch("https://api.diga.io/v1/billing/subscription", { ... })
+
+// Use the proxy with the /api prefix:
+fetch("/api/v1/billing/subscription", { ... })
+```
+
+The proxy will handle:
+- Redirecting the request to `https://api.diga.io/v1/billing/subscription`
+- Adding the necessary CORS headers
+- Keeping the connection secure (HTTPS)
+
+---
+
 ### Library Documentation
 
 - [Tailwind CSS](https://tailwindcss.com/)
@@ -171,5 +214,10 @@ The project selector should be able to switch among these API keys:
 - sk-f0d89d3b2924ea11f47db647e9090bec96e4c13db9b9094d9032c31910842a61
 - sk-7ae237700e65605e400e32e42811130acf34a7aefbc8eb42c10107faba758e91
 
-This are API keys for real Diga projects. They have mock subscriptions and calls
+> [!TIP]
+> Display the first 10 characters of each API key in the selector
+> (e.g., `sk-944645d2`). The selected API key should be stored in memory
+> (Context or state); there's no need to persist it in localStorage.
+
+These are API keys for real Diga projects. They have mock subscriptions and calls
 that you can use to work in this exercise.
