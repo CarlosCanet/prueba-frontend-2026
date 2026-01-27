@@ -32,6 +32,12 @@ Este es el stack con el que trabajarás en la compañía, sin embargo, también
 puedes realizar la prueba completamente de cero siempre que uses React 19,
 Typescript y Tailwind CSS.
 
+> [!WARNING] 
+> Nuestra API no devuelve localhost en los headers de CORS. En el código dado
+> con Vite, hay un proxy preconfigurado para poder utilizarla API directamente
+> ([saber más](<README#Recursos útiles>)). Si utilizas tu propio servidor de
+> desarrollo tendrás que configurar tu propio proxy.
+
 ### Tareas a realizar
 
 Estas son las diferentes características que debes implementar, este listado es
@@ -71,7 +77,9 @@ Aquí te dejamos algunos recursos que pueden ser útiles para el desarrollo de l
 
 A continuación se detallan los endpoints necesarios. Para la autenticación, deberás enviar la API Key seleccionada en los headers.
 
-#### 1. Listado de llamadas
+#### API Reference
+
+##### 1. Listado de llamadas
 
 Obtiene el historial de llamadas del proyecto.
 
@@ -129,7 +137,7 @@ Obtiene el historial de llamadas del proyecto.
 
 ---
 
-#### 2. Información de la suscripción
+##### 2. Información de la suscripción
 
 Obtiene los detalles de facturación y suscripción del proyecto actual.
 
@@ -169,6 +177,10 @@ Obtiene los detalles de facturación y suscripción del proyecto actual.
 ```
 
 > 👉 Para más información consulta la [API reference de Billing](https://docs.diga.io/api-reference/billing--subscriptions/get-subscription).
+
+---
+> [!WARNING]
+> Como se ha discutido anteriormente, esta API 
 
 ---
 
