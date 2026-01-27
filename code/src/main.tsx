@@ -5,6 +5,7 @@ import { RouteProvider } from "@/providers/router-provider";
 import { ThemeProvider } from "@/providers/theme-provider";
 import "@/styles/globals.css";
 import WelcomePage from "./pages/welcome";
+import EnWelcomePage from "./pages/welcome.en";
 
 createRoot(document.getElementById("root")!).render(
     <StrictMode>
@@ -13,6 +14,7 @@ createRoot(document.getElementById("root")!).render(
                 <RouteProvider>
                     <Routes>
                         <Route path="/" element={<WelcomePage />} />
+                        <Route path="/en" element={<EnWelcomePage />} />
                     </Routes>
                 </RouteProvider>
             </BrowserRouter>
