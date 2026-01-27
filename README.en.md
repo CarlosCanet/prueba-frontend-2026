@@ -10,6 +10,7 @@ The test consists of implementing a small dashboard that simulates the real func
 
 > [!note]
 > **Duration of the exercise**
+>
 > Although you only have **one hour** to complete the exercise, it is designed to take longer. Do not worry if you are unable to finish. We want to evaluate your ability to prioritize and assess the importance of tasks.
 
 ## What does the task consist of?

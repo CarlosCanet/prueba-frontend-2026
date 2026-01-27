@@ -13,6 +13,7 @@ de llamadas. Tendrás una hora para realizarlo.
 
 > [!NOTE]
 > **Duración del ejercicio**
+>
 > A pesar de que solo tienes una hora para realizar el ejercicio, este está
 > diseñado para ser completado en más tiempo así que no te preocupes si no eres
 > capaz de terminar. Queremos evaluar tu capacidad de priorizar y valorar
