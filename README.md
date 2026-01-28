@@ -235,10 +235,17 @@ El selector debe ofrecer las siguientes API keys:
 - sk-f0d89d3b2924ea11f47db647e9090bec96e4c13db9b9094d9032c31910842a61
 - sk-7ae237700e65605e400e32e42811130acf34a7aefbc8eb42c10107faba758e91
 
-> [!TIP]
-> Muestra los primeros 10 caracteres de cada API key en el selector
-> (ej: `sk-944645d2`). La API key seleccionada debe guardarse en memoria
-> (Context o estado), no es necesario persistirla en localStorage.
-
 Estas son API keys de proyectos reales en Diga. Tienen llamadas y suscripciones
 simuladas con las que podrás trabajar en la prueba.
+
+---
+
+## Otras anotaciones
+
+- A pesar de que tenemos un endpoit para obtener el nombre del project, no es
+necesario que lo uses. Puedes mostrar los primeros 10 caracteres de cada API key
+en el selector.
+- La API key seleccionada puede ser guardad en memoria, no hace falta que la
+guardes en el localStorage.
+- Puedes encontar algunos recursos (como nuestro logo para la sidebar) en el
+directorio public.

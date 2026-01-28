@@ -214,10 +214,16 @@ The project selector should be able to switch among these API keys:
 - sk-f0d89d3b2924ea11f47db647e9090bec96e4c13db9b9094d9032c31910842a61
 - sk-7ae237700e65605e400e32e42811130acf34a7aefbc8eb42c10107faba758e91
 
-> [!TIP]
-> Display the first 10 characters of each API key in the selector
-> (e.g., `sk-944645d2`). The selected API key should be stored in memory
-> (Context or state); there's no need to persist it in localStorage.
-
 These are API keys for real Diga projects. They have mock subscriptions and calls
 that you can use to work in this exercise.
+
+---
+
+## Other anotations
+
+- Although we have an endpoint to get the name of the project, there's no need
+use it, you can display the first 10 character of each API key in the selector.
+- The selected API key can be stored in memory, don't bother saving it in
+localStorage if you don't want.
+- You can find some resources (such as our logo for the sidebar) in the public
+directory.
