@@ -29,8 +29,8 @@ de llamadas. Tendrás una hora para realizarlo.
 
 ## ¿En qué consiste la tarea?
 
-Deberás implementar este [diseño de Figma](https://figma.com), usando React
-con TS y Tailwind CSS.
+Deberás implementar este [diseño de Figma](https://www.figma.com/design/Nv7e6LVCWymsxPgsxRMa3v/Prueba-técnica---Frontend?node-id=1480-0&p=f&m=draw),
+usando React con TS y Tailwind CSS.
 
 Puedes partir de este repositorio, que tiene una instalación por defecto de Vite
 con TS preconfigurado y Tailwind instalado. También puedes encontrar los

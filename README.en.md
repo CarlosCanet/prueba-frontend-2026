@@ -23,7 +23,8 @@ The test consists of implementing a small dashboard that simulates the real func
 
 ## What does the task consist of?
 
-You must implement this [Figma design](https://figma.com), using **React with TS** and **Tailwind CSS**.
+You must implement this [Figma design](https://www.figma.com/design/Nv7e6LVCWymsxPgsxRMa3v/Prueba-técnica---Frontend?node-id=1480-0&p=f&m=draw),
+using **React with TS** and **Tailwind CSS**.
 
 You can start from this repository, which includes a default Vite installation pre-configured with TS and Tailwind installed. You can also find components from *Untitled*, the library we use at Diga.
 
