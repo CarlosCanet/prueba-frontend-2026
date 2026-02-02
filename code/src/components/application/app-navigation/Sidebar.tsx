@@ -7,8 +7,8 @@ import { useState } from "react"
 
 const projects = apiKeys.map((key, index) => ({
   id: String(index),
-  name: `Proyecto ${index + 1}`,
-  email: `${key.substring(0, 10)}...`,
+  name: `${key.substring(0, 3)}**************`,
+  email: "",
   avatar: "",
   status: "online" as const,
 }))
@@ -34,6 +34,7 @@ function Sidebar() {
         items={projects} 
         selectedAccountId={selectedKey} 
         onSelect={handleSelect}
+        className="w-full bg-white"
       />
       <ul className="flex flex-col gap-4">
         <Link to="/">

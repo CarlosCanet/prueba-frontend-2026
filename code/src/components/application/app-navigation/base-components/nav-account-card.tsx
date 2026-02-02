@@ -164,11 +164,13 @@ export const NavAccountCard = ({
     selectedAccountId = "olivia",
     items = placeholderAccounts,
     onSelect,
+    className,
 }: {
     popoverPlacement?: PopoverProps["placement"];
     selectedAccountId?: string;
     items?: NavAccountType[];
     onSelect?: (id: string) => void;
+    className?: string;
 }) => {
     const triggerRef = useRef<HTMLDivElement>(null);
     const isDesktop = useBreakpoint("lg");
@@ -181,7 +183,7 @@ export const NavAccountCard = ({
     }
 
     return (
-        <div ref={triggerRef} className="relative flex items-center gap-3 rounded-xl p-3 ring-1 ring-secondary ring-inset">
+        <div ref={triggerRef} className={cx("relative flex items-center gap-3 rounded-xl p-3 ring-1 ring-secondary ring-inset", className)}>
             <AvatarLabelGroup
                 size="md"
                 src={selectedAccount.avatar}
