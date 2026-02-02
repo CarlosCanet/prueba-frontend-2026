@@ -1,9 +1,8 @@
 import type { FC, HTMLAttributes } from "react";
 import { useCallback, useEffect, useRef } from "react";
-import type { Placement } from "@react-types/overlays";
 import { BookOpen01, ChevronSelectorVertical, LogOut01, Plus, Settings01, User01 } from "@untitledui/icons";
 import { useFocusManager } from "react-aria";
-import type { DialogProps as AriaDialogProps } from "react-aria-components";
+import type { DialogProps as AriaDialogProps, PopoverProps } from "react-aria-components";
 import { Button as AriaButton, Dialog as AriaDialog, DialogTrigger as AriaDialogTrigger, Popover as AriaPopover } from "react-aria-components";
 import { AvatarLabelGroup } from "@/components/base/avatar/avatar-label-group";
 import { Button } from "@/components/base/buttons/button";
@@ -44,8 +43,15 @@ const placeholderAccounts: NavAccountType[] = [
 export const NavAccountMenu = ({
     className,
     selectedAccountId = "olivia",
+    accounts = placeholderAccounts,
+    onSelect,
     ...dialogProps
-}: AriaDialogProps & { className?: string; accounts?: NavAccountType[]; selectedAccountId?: string }) => {
+}: AriaDialogProps & {
+    className?: string;
+    accounts?: NavAccountType[];
+    selectedAccountId?: string;
+    onSelect?: (id: string) => void;
+}) => {
     const focusManager = useFocusManager();
     const dialogRef = useRef<HTMLDivElement>(null);
 
@@ -92,9 +98,10 @@ export const NavAccountMenu = ({
                     <div className="px-3 pt-1.5 pb-1 text-xs font-semibold text-tertiary">Switch account</div>
 
                     <div className="flex flex-col gap-0.5 px-1.5">
-                        {placeholderAccounts.map((account) => (
+                        {accounts.map((account) => (
                             <button
                                 key={account.id}
+                                onClick={() => onSelect?.(account.id)}
                                 className={cx(
                                     "relative w-full cursor-pointer rounded-md px-2 py-1.5 text-left outline-focus-ring hover:bg-primary_hover focus:z-10 focus-visible:outline-2 focus-visible:outline-offset-2",
                                     account.id === selectedAccountId && "bg-primary_hover",
@@ -156,15 +163,17 @@ export const NavAccountCard = ({
     popoverPlacement,
     selectedAccountId = "olivia",
     items = placeholderAccounts,
+    onSelect,
 }: {
-    popoverPlacement?: Placement;
+    popoverPlacement?: PopoverProps["placement"];
     selectedAccountId?: string;
     items?: NavAccountType[];
+    onSelect?: (id: string) => void;
 }) => {
     const triggerRef = useRef<HTMLDivElement>(null);
     const isDesktop = useBreakpoint("lg");
 
-    const selectedAccount = placeholderAccounts.find((account) => account.id === selectedAccountId);
+    const selectedAccount = items.find((account) => account.id === selectedAccountId) ?? items[0];
 
     if (!selectedAccount) {
         console.warn(`Account with ID ${selectedAccountId} not found in <NavAccountCard />`);
@@ -200,7 +209,7 @@ export const NavAccountCard = ({
                             )
                         }
                     >
-                        <NavAccountMenu selectedAccountId={selectedAccountId} accounts={items} />
+                        <NavAccountMenu selectedAccountId={selectedAccountId} accounts={items} onSelect={onSelect} />
                     </AriaPopover>
                 </AriaDialogTrigger>
             </div>

@@ -4,8 +4,9 @@ import { BrowserRouter, Route, Routes } from "react-router";
 import { RouteProvider } from "@/providers/router-provider";
 import { ThemeProvider } from "@/providers/theme-provider";
 import "@/styles/globals.css";
-import WelcomePage from "./pages/welcome";
-import EnWelcomePage from "./pages/welcome.en";
+import Dashboard from "./pages/dashboard";
+import SubscriptionPage from "./pages/subscription";
+import CallLog from "./pages/callLog";
 
 createRoot(document.getElementById("root")!).render(
     <StrictMode>
@@ -13,8 +14,11 @@ createRoot(document.getElementById("root")!).render(
             <BrowserRouter>
                 <RouteProvider>
                     <Routes>
-                        <Route path="/" element={<WelcomePage />} />
-                        <Route path="/en" element={<EnWelcomePage />} />
+                        <Route element={<Dashboard />}>
+                            <Route path="/" element={<SubscriptionPage />} />
+                            <Route path="/:id" element={<SubscriptionPage />} />
+                            <Route path="/call-log" element={<CallLog />} />
+                        </Route>
                     </Routes>
                 </RouteProvider>
             </BrowserRouter>

@@ -1,16 +1,20 @@
 import { useEffect, useState } from "react";
 import { ProgressBarCircle } from "@/components/base/progress-indicators/progress-circles";
+import { useParams } from "react-router";
+import { apiKeys } from "@/utils/data";
 
 export default function SubscriptionPage() {
     const [s, setS] = useState<any>();
     const [l, setL] = useState(false);
+    const params = useParams();
+    const id = params.id ?? "0";
 
     async function fetchData() {
         setL(true);
         const res = await fetch("/api/v1/billing/subscription", {
             method: "GET",
             headers: {
-                Authorization: "Bearer sk-944645d244ddfa2890b77f2c1262e595d1aa6ad89a8d3775cb29c036dba9d55d",
+                Authorization: `Bearer ${apiKeys[parseInt(id!)]}`,
             },
         });
         const data = await res.json();
@@ -20,7 +24,7 @@ export default function SubscriptionPage() {
 
     useEffect(() => {
         fetchData();
-    });
+    }, [id]);
 
     const daysLeft = Math.round((new Date(s?.period_end).getTime() - new Date().getTime()) / (10 * 3600 * 24)) / 100;
 
