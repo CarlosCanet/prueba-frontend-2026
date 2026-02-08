@@ -1,3 +1,4 @@
+import SkeletonRectangle from "@/components/shared-assets/skeleton-rectangle";
 import { cx as clx, sortCx } from "@/utils/cx";
 
 interface ProgressBarProps {
@@ -106,6 +107,41 @@ export const ProgressBarCircle = ({ value, min = 0, max = 100, size, label, valu
             </div>
 
             {label && size === "xxs" && <div className={labelClass}>{label}</div>}
+        </div>
+    );
+};
+
+export const ProgressBarCircleSkeleton = ({ size }: Omit<ProgressBarProps, "value">) => {
+    const sizeConfig = sizes[size];
+
+    const { strokeWidth, radius } = sizeConfig;
+
+    const diameter = 2 * (radius + strokeWidth / 2);
+    const width = diameter;
+    const height = diameter;
+    const viewBox = `0 0 ${width} ${height}`;
+    const cx = diameter / 2;
+    const cy = diameter / 2;
+
+    return (
+        <div className="flex flex-col items-center gap-0.5">
+            <div role="progressbar" aria-valuenow={100} aria-valuemin={100} aria-valuemax={100} className="relative flex w-max items-center justify-center">
+                <svg className="-rotate-90" width={width} height={height} viewBox={viewBox}>
+                    {/* Background circle */}
+                    <circle
+                        className="stroke-neutral-200 animate-pulse"
+                        cx={cx}
+                        cy={cy}
+                        r={radius}
+                        fill="none"
+                        strokeWidth={strokeWidth}
+                        pathLength="100"
+                        strokeDasharray="100"
+                        strokeLinecap="round"
+                    />
+                </svg>
+                <SkeletonRectangle className="absolute h-7.75 w-15" />
+            </div>
         </div>
     );
 };
