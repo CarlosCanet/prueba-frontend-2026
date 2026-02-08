@@ -13,12 +13,21 @@ export function secondsToHMS(seconds: number) {
     return `${h > 0 ? h + " h " : ""}${m > 0 ? m + " m " : ""}${s} s`;
 }
 
-export function dateToString(date: string) {
+export function dateToStringShort(date: string) {
     const d = new Date(date);
     return d.toLocaleDateString("es-ES", {
         year: "numeric",
         month: "2-digit",
         day: "2-digit",
+    });
+}
+
+export function dateToStringLong(date: string) {
+    const d = new Date(date);
+    return d.toLocaleDateString("es-ES", {
+        day: "2-digit",
+        month: "long",
+        year: "numeric",
     });
 }
 

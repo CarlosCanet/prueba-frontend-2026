@@ -1,15 +1,15 @@
 import { useEffect, useMemo, useState } from "react";
-import { Clipboard, PhoneIncoming01, PhoneOutgoing01 } from "@untitledui/icons";
+import { PhoneIncoming01, PhoneOutgoing01 } from "@untitledui/icons";
 import type { SortDescriptor } from "react-aria-components";
+import ButtonCopy from "@/components/application/call-logs/button-copy";
 import CallStatusBadge from "@/components/application/call-logs/call-status-badge";
 import { EmptyState } from "@/components/application/empty-state/empty-state";
 import { Table, TableCard } from "@/components/application/table/table";
 import { BadgeWithIcon } from "@/components/base/badges/badges";
-import { ButtonUtility } from "@/components/base/buttons/button-utility";
 import { useProject } from "@/providers/project-provider";
 import { getCallLogs } from "@/shared/api/fetch";
 import type { CallResponse } from "@/types/call-logs";
-import { dateToHourString, dateToString, secondsToHMS } from "@/utils/date";
+import { dateToHourString, dateToStringShort, secondsToHMS } from "@/utils/date";
 
 function CallLogs() {
     const [calls, setCalls] = useState<CallResponse>();
@@ -133,7 +133,7 @@ function CallLogs() {
                                             <Table.Cell>
                                                 <span className="flex justify-between">
                                                     <div className="flex items-center gap-3">{item.id.slice(0, 9)}...</div>
-                                                    <ButtonUtility size="xs" color="tertiary" tooltip="Copy" icon={Clipboard} />
+                                                    <ButtonCopy text={item.id} />
                                                 </span>
                                             </Table.Cell>
                                             <Table.Cell>
@@ -153,7 +153,7 @@ function CallLogs() {
                                             </Table.Cell>
                                             <Table.Cell>{secondsToHMS(item.duration)}</Table.Cell>
                                             <Table.Cell>
-                                                <div className="text-body-sm font-medium text-neutral-900">{dateToString(item.contact.created_date)}</div>
+                                                <div className="text-body-sm font-medium text-neutral-900">{dateToStringShort(item.contact.created_date)}</div>
                                                 <div className="text-body-sm text-neutral-600">{dateToHourString(item.contact.created_date)}</div>
                                             </Table.Cell>
                                         </Table.Row>
